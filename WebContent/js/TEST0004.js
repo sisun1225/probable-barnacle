@@ -13,30 +13,54 @@ const canvas = document.querySelector('.webgl')
 //https://stackoverflow.com/questions/67566899/uncaught-typeerror-cannot-read-property-push-of-undefined-in-three-js
 //https://stackoverflow.com/questions/68000359/three-geometry-is-not-a-constructor
 //geometry는 지원중단125버전부터
-const geometry = new THREE.Geometry()
 
-for(let i=0; i<50; i++){
-	for(let j=0; j<3; j++)
-		{
-			geometry.vertices.push(new THREE.Vector3(
-				(Math.random() - 0.5) * 4,
-				(Math.random() - 0.5) * 4,
-				(Math.random() - 0.5) * 4
-			))
-		}
-		const verticesIndex = i *3
-		geometry.faces.push(new THREE.Face3(
-			verticesIndex,
-			verticesIndex +1,
-			verticesIndex +2
-		))
+//const geometry = new THREE.BoxBufferGeometry(1, 1, 1, 2, 2, 2)
+
+const geometry = new THREE.BufferGeometry()
+
+const count = 50
+const positionsArray = new Float32Array(count *3 *3)
+
+for(let i=0; i<count *3*3; i++){
+	positionsArray[i] = (Math.random() - 0.5) * 4
 }
+
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+geometry.setAttribute('position', positionsAttribute) 
+
+/*
+onst positionsArray = new Float32Array([
+	0, 0, 0,
+	0, 1, 0,
+	1, 0, 0,
+])
+
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+
+const geometry = new THREE.BufferGeometry()
+geometry.setAttribute('position', positionsAttribute)
+ */
+
+
+/*
+positionsArray[0] = 0
+positionsArray[1] = 0
+positionsArray[2] = 0
+
+positionsArray[3] = 0
+positionsArray[4] = 1
+positionsArray[5] = 0
+
+positionsArray[6] = 1
+positionsArray[7] = 0
+positionsArray[8] = 0
+*/
 const material = new THREE.MeshBasicMaterial({ 
-	color:'red',
+	color: 0xff0000,
 	wireframe  : true
 	
 	})
-const mesh = new THREE.Mesh(geometry, material)
+const mesh = new THREE.Mesh(geometry, material) 
 scene.add(mesh) 
 
 
