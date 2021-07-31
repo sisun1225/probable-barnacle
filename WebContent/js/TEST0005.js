@@ -19,21 +19,68 @@ const canvas = document.querySelector('.webgl')
 console.log(dat)
 
 //어트리뷰트
-const gui = new dat.GUI()
+const gui = new dat.GUI({closed : true, width : 400})
+//closed :true  실행시 닫힌상태로 실행
+
+function spin(){
+	
+}
+
+const parameters ={
+	color: 0xffff00,   //색상 초기값
+	spin :() =>{
+		console.log('spin')
+		gsap.to(mesh.rotation, {duration : 1, y : mesh.rotation.y +10})
+	}
+}
+
+gui
+	.addColor(parameters, 'color')
+	.onChange(()=>{
+		console.log('tweak did change')
+		material.color.set(parameters.color)
+	})
+
+gui
+	.add(parameters, 'spin')
+
+
+
+
+//h누르면 패널 사라짐 또는gui.hide()하면 초기는 사라져있다..h하면 나타난다.
+
+
 
 //오브젝트생성
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color:'red'})
+const material = new THREE.MeshBasicMaterial({ color: parameters.color})
 const mesh = new THREE.Mesh(geometry, material)
+
 
 scene.add(mesh) 
 
 
 
 //어트리뷰트
-gui.add(mesh.position, 'y')
+/*
+gui.add(mesh.position, 'y', -3, 3, 0.01) // 앞뒤로 3 범위.... 0.01자릿수로 조절가능
+gui.add(mesh.position, 'x', -3, 3, 0.01) 
+gui.add(mesh.position, 'z', -3, 3, 0.01) 
+ */
+gui
+	.add(mesh.position, 'y')
+	.min(-3)
+	.max(3)
+	.step(0.01)
+	.name('elevation') //옵션명 변경
 
- 
+gui
+	.add(mesh, 'visible')
+	
+gui
+	.add(material, 'wireframe')
+	
+
 //피봇 생성
 //const axesHelper = new THREE.AxesHelper()
 //scene.add(axesHelper)
