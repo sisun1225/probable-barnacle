@@ -37,6 +37,28 @@ const normaltexture = textureLoader.load('img/woodbox.jpg')
 const aotexture = textureLoader.load('img/woodbox.jpg')
 const roughtexture = textureLoader.load('img/woodbox.jpg')
  
+/*
+//텍스쳐반복
+colortexture.repeat.x =2
+colortexture.repeat.y =2
+//위에것만 하면 늘어지듯 보이지 않는다.. 아래것 추가해줘야 반복됨...
+colortexture.wrapS = THREE.RepeatWrapping
+colortexture.wrapT = THREE.RepeatWrapping
+
+//offset
+colortexture.offset.x = 0.5
+
+//rotation
+//반바퀴 파이, 45도 파이 곱하기0.25 (/4 로 해도됨)
+colortexture.rotation = Math.PI /4
+//로테이션 중심점 0.5면 반틈이동 
+colortexture.center.x = 0.5 
+colortexture.center.y = 0.5 
+*/
+
+colortexture.generateMipmaps =false
+colortexture.minFilter = THREE.NearestFilter
+colortexture.magFilter = THREE.NearestFilter
 
 const scene = new THREE.Scene()
 
