@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="#">
+<meta charset="UTF-8">
+<title>earthTest</title>
+<style>
+* { 
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body{
+	overflow: hidden;
+}
+.webgl{
+	position : fixed;
+	top:0;
+	left:0;
+	outline: none;
+}
+</style>
+</head>
+<body>
+
+<canvas class = "webgl"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.3/dat.gui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+<script src="shaders/vertex.glsl" id="vertexShader" type="x-shader/x-vertex"></script>
+<script src="shaders/fragment.glsl" id="fragmentShader" type="x-shader/x-fragment"></script>
+<script src="js/earthTest.js"></script>
+
+</body>
+</html>
